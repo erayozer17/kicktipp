@@ -1,0 +1,18 @@
+version: '3.6'
+services:
+  kicktipp:
+    container_name: kicktipp
+    build:
+      context: .
+    expose:
+      - 80
+    networks:
+      - nginx-proxy
+    environment:
+      - VIRTUAL_HOST=kicktipp.eray-ozer.com
+      - LETSENCRYPT_HOST=kicktipp.eray-ozer.com
+      - LETSENCRYPT_EMAIL=erayozer91@pm.me
+
+networks:
+  nginx-proxy:
+    external: true
