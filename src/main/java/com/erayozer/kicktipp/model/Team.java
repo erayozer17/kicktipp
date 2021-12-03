@@ -1,6 +1,6 @@
 package com.erayozer.kicktipp.model;
 
-public class Patient {
+public class Team implements FirebaseModel {
 
     private String name;
 
@@ -8,9 +8,9 @@ public class Patient {
 
     private String city;
 
-    public Patient() {}
+    public Team() {}
 
-    public Patient(String name, int age, String city) {
+    public Team(String name, int age, String city) {
         this.name = name;
         this.age = age;
         this.city = city;
@@ -38,5 +38,10 @@ public class Patient {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    @Override
+    public String modelColumn() {
+        return "teams";
     }
 }
