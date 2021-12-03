@@ -20,9 +20,9 @@ public abstract class FirebaseCrud<T extends FirebaseModel> {
     @SuppressWarnings("unchecked")
     public FirebaseCrud() throws InstantiationException, IllegalAccessException {
         this.genericType = (Class<T>) GenericTypeResolver.resolveTypeArgument(getClass(), FirebaseCrud.class);
-        if (type == null) {
+        if (this.type == null) {
             assert this.genericType != null;
-            type = this.genericType.newInstance();
+            this.type = this.genericType.newInstance();
         }
     }
 

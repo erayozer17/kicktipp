@@ -14,7 +14,7 @@ public class TeamService extends FirebaseCrud<Team> {
     }
 
     public String save(Team team) throws InterruptedException, ExecutionException {
-        return saveObject(team, team.getName());
+        return saveObject(team, team.identifier());
     }
 
     public Team get(String name) throws InterruptedException, ExecutionException {
@@ -25,8 +25,8 @@ public class TeamService extends FirebaseCrud<Team> {
         return getAllObjects();
     }
 
-    public String update(Team person) throws InterruptedException, ExecutionException {
-        return updateObject(person, person.getName());
+    public String update(Team team) throws InterruptedException, ExecutionException {
+        return updateObject(team, team.identifier());
     }
 
     public String delete(String name) {

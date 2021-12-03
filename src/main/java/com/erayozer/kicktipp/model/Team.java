@@ -44,4 +44,9 @@ public class Team implements FirebaseModel {
     public String modelColumn() {
         return "teams";
     }
+
+    @Override
+    public String identifier() {
+        return getName();
+    }
 }
