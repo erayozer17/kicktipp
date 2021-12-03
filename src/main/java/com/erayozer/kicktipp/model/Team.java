@@ -6,11 +6,14 @@ public class Team implements FirebaseModel {
 
     private int points;
 
+    private String abbreviation;
+
     public Team() {}
 
-    public Team(String name, int points) {
+    public Team(String name, int points, String abbreviation) {
         this.name = name;
         this.points = points;
+        this.abbreviation = abbreviation;
     }
 
     public String getName() {
@@ -37,5 +40,13 @@ public class Team implements FirebaseModel {
     @Override
     public String identifier() {
         return getName();
+    }
+
+    public String getAbbreviation() {
+        return abbreviation;
+    }
+
+    public void setAbbreviation(String abbreviation) {
+        this.abbreviation = abbreviation;
     }
 }

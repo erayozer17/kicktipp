@@ -85,7 +85,7 @@ public abstract class FirebaseCrud<T extends FirebaseModel> {
     }
 
     public abstract String save(T t) throws InterruptedException, ExecutionException;
-    public abstract Team get(String name) throws InterruptedException, ExecutionException;
+    public abstract T get(String name) throws InterruptedException, ExecutionException;
     public abstract List<Map<String, Object>> getAll() throws InterruptedException, ExecutionException;
     public abstract String update(T t) throws InterruptedException, ExecutionException;
     public abstract String delete(String name);
