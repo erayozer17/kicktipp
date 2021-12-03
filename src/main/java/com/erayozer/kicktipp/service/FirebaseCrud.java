@@ -1,7 +1,6 @@
 package com.erayozer.kicktipp.service;
 
 import com.erayozer.kicktipp.model.FirebaseModel;
-import com.erayozer.kicktipp.model.Team;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
@@ -40,7 +39,7 @@ public abstract class FirebaseCrud<T extends FirebaseModel> {
     }
 
     public List<Map<String, Object>> getAllObjects() throws InterruptedException, ExecutionException {
-        List<Map<String, Object>> teams = new ArrayList<>();
+        List<Map<String, Object>> objects = new ArrayList<>();
         Firestore dbFirestore = getDbFirestore();
         CollectionReference collectionReference = dbFirestore.collection(type.collectionName());
         ApiFuture<QuerySnapshot> future = collectionReference.get();
@@ -48,10 +47,10 @@ public abstract class FirebaseCrud<T extends FirebaseModel> {
         List<QueryDocumentSnapshot> documents = future.get().getDocuments();
 
         for (QueryDocumentSnapshot q : documents) {
-            teams.add(q.getData());
+            objects.add(q.getData());
         }
 
-        return teams;
+        return objects;
     }
 
     public T getObject(String name) throws InterruptedException, ExecutionException {
