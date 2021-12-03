@@ -35,14 +35,14 @@ public abstract class FirebaseCrud<T extends FirebaseModel> {
 
     public String updateObject(T t, String documentName) throws InterruptedException, ExecutionException {
         Firestore dbFirestore = getDbFirestore();
-        ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection(type.modelColumn()).document(documentName).set(t);
+        ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection(type.collectionName()).document(documentName).set(t);
         return collectionsApiFuture.get().getUpdateTime().toString();
     }
 
     public List<Map<String, Object>> getAllObjects() throws InterruptedException, ExecutionException {
         List<Map<String, Object>> teams = new ArrayList<>();
         Firestore dbFirestore = getDbFirestore();
-        CollectionReference collectionReference = dbFirestore.collection(type.modelColumn());
+        CollectionReference collectionReference = dbFirestore.collection(type.collectionName());
         ApiFuture<QuerySnapshot> future = collectionReference.get();
 
         List<QueryDocumentSnapshot> documents = future.get().getDocuments();
@@ -56,7 +56,7 @@ public abstract class FirebaseCrud<T extends FirebaseModel> {
 
     public T getObject(String name) throws InterruptedException, ExecutionException {
         Firestore dbFirestore = getDbFirestore();
-        DocumentReference documentReference = dbFirestore.collection(type.modelColumn()).document(name);
+        DocumentReference documentReference = dbFirestore.collection(type.collectionName()).document(name);
         ApiFuture<DocumentSnapshot> future = documentReference.get();
 
         DocumentSnapshot document = future.get();
@@ -71,14 +71,14 @@ public abstract class FirebaseCrud<T extends FirebaseModel> {
 
     public String deleteObject(String name) {
         Firestore dbFirestore = getDbFirestore();
-        ApiFuture<WriteResult> writeResult = dbFirestore.collection(type.modelColumn()).document(name).delete();
+        ApiFuture<WriteResult> writeResult = dbFirestore.collection(type.collectionName()).document(name).delete();
         return "Document with Patient ID "+name+" has been deleted";
     }
 
     public String saveObject(T t, String documentName) throws InterruptedException, ExecutionException {
         Firestore dbFirestore = getDbFirestore();
         ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.
-                collection(type.modelColumn()).
+                collection(type.collectionName()).
                 document(documentName).
                 set(t);
         return collectionsApiFuture.get().getUpdateTime().toString();

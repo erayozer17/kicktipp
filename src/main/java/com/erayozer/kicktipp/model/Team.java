@@ -4,16 +4,13 @@ public class Team implements FirebaseModel {
 
     private String name;
 
-    private int age;
-
-    private String city;
+    private int points;
 
     public Team() {}
 
-    public Team(String name, int age, String city) {
+    public Team(String name, int points) {
         this.name = name;
-        this.age = age;
-        this.city = city;
+        this.points = points;
     }
 
     public String getName() {
@@ -24,24 +21,16 @@ public class Team implements FirebaseModel {
         this.name = name;
     }
 
-    public int getAge() {
-        return age;
+    public int getPoints() {
+        return points;
     }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
+    public void setPoints(int points) {
+        this.points = points;
     }
 
     @Override
-    public String modelColumn() {
+    public String collectionName() {
         return "teams";
     }
 
