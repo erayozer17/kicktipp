@@ -208,4 +208,26 @@ public class PointCalculatorTest {
         int point = pointCalculator.calculateGroupPhase(bet, result);
         assert point == -1;
     }
+
+    @Test
+    public void test_not_group_phase_points(){
+        Bet bet = new Bet(
+                false,
+                new Team("Germany", "GER"),
+                new Team("France", "FRA"),
+                3,
+                3,
+                MatchType.ACHTEL
+        );
+
+        Result result = new Result(
+                new Team("Germany", "GER"),
+                new Team("France", "FRA"),
+                2,
+                2,
+                MatchType.ACHTEL
+        );
+        int point = pointCalculator.calculateGroupPhase(bet, result);
+        assert point == -1;
+    }
 }
