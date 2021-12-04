@@ -9,6 +9,11 @@ public class Bet extends Result {
         this.joker = joker;
     }
 
+    public Bet(boolean joker, Team homeTeam, Team awayTeam, int homeScore, int awayScore, MatchType matchType){
+        super(homeTeam, awayTeam, homeScore, awayScore, matchType);
+        this.joker = joker;
+    }
+
     public boolean isJoker() {
         return joker;
     }

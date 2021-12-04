@@ -40,8 +40,8 @@ public class PointCalculator {
     }
 
     private boolean isComparisonAvailable(Bet bet, Result result) {
-        if ((bet.getHomeTeam() != result.getHomeTeam()) ||
-                (bet.getAwayTeam() != result.getAwayTeam())) {
+        if ((!bet.getHomeTeam().getName().equals(result.getHomeTeam().getName())) ||
+            (!bet.getAwayTeam().getName().equals(result.getAwayTeam().getName()))) {
             return false;
         }
         return true;
