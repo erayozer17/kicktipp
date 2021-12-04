@@ -7,7 +7,7 @@ public class PointCalculator {
 
     private static final int JOKER_FACTOR = 2;
 
-    public int calculate(Bet bet, Result result) {
+    public int calculateGroupPhase(Bet bet, Result result) {
         int totalScore = 0;
         if (!isComparisonAvailable(bet, result)) {
             return -1;
@@ -41,7 +41,8 @@ public class PointCalculator {
 
     private boolean isComparisonAvailable(Bet bet, Result result) {
         if ((!bet.getHomeTeam().getName().equals(result.getHomeTeam().getName())) ||
-            (!bet.getAwayTeam().getName().equals(result.getAwayTeam().getName()))) {
+            (!bet.getAwayTeam().getName().equals(result.getAwayTeam().getName())) ||
+            (bet.getMatchType() != result.getMatchType()) ) {
             return false;
         }
         return true;

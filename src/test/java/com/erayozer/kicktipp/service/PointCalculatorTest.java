@@ -33,10 +33,10 @@ public class PointCalculatorTest {
                 4,
                 MatchType.GROUP
         );
-        int point = pointCalculator.calculate(bet, result);
+        int point = pointCalculator.calculateGroupPhase(bet, result);
         assert point == 7;
         bet.setJoker(true);
-        int pointJoker = pointCalculator.calculate(bet, result);
+        int pointJoker = pointCalculator.calculateGroupPhase(bet, result);
         assert pointJoker == 14;
     }
 
@@ -58,13 +58,13 @@ public class PointCalculatorTest {
                 4,
                 MatchType.GROUP
         );
-        int point = pointCalculator.calculate(bet, result);
+        int point = pointCalculator.calculateGroupPhase(bet, result);
         assert point == -1;
         bet.setHomeTeam(new Team("Turkey", "TUR"));
-        int point2 = pointCalculator.calculate(bet, result);
+        int point2 = pointCalculator.calculateGroupPhase(bet, result);
         assert point2 == -1;
         bet.setAwayTeam(new Team("Italy", "ITA"));
-        int point3 = pointCalculator.calculate(bet, result);
+        int point3 = pointCalculator.calculateGroupPhase(bet, result);
         assert point3 == 7;
     }
 
@@ -86,7 +86,7 @@ public class PointCalculatorTest {
                 6,
                 MatchType.GROUP
         );
-        int point = pointCalculator.calculate(bet, result);
+        int point = pointCalculator.calculateGroupPhase(bet, result);
         assert point == 0;
     }
 
@@ -108,7 +108,7 @@ public class PointCalculatorTest {
                 1,
                 MatchType.GROUP
         );
-        int point = pointCalculator.calculate(bet, result);
+        int point = pointCalculator.calculateGroupPhase(bet, result);
         assert point == 2;
     }
 
@@ -130,10 +130,10 @@ public class PointCalculatorTest {
                 0,
                 MatchType.GROUP
         );
-        int point = pointCalculator.calculate(bet, result);
+        int point = pointCalculator.calculateGroupPhase(bet, result);
         assert point == 4;
         bet.setJoker(true);
-        int point2 = pointCalculator.calculate(bet, result);
+        int point2 = pointCalculator.calculateGroupPhase(bet, result);
         assert point2 == 8;
     }
 
@@ -155,10 +155,10 @@ public class PointCalculatorTest {
                 3,
                 MatchType.GROUP
         );
-        int point = pointCalculator.calculate(bet, result);
+        int point = pointCalculator.calculateGroupPhase(bet, result);
         assert point == 2;
         bet.setJoker(true);
-        int point2 = pointCalculator.calculate(bet, result);
+        int point2 = pointCalculator.calculateGroupPhase(bet, result);
         assert point2 == 4;
     }
 
@@ -180,10 +180,32 @@ public class PointCalculatorTest {
                 2,
                 MatchType.GROUP
         );
-        int point = pointCalculator.calculate(bet, result);
+        int point = pointCalculator.calculateGroupPhase(bet, result);
         assert point == 2;
         bet.setJoker(true);
-        int point2 = pointCalculator.calculate(bet, result);
+        int point2 = pointCalculator.calculateGroupPhase(bet, result);
         assert point2 == 4;
+    }
+
+    @Test
+    public void test_different_match_types(){
+        Bet bet = new Bet(
+                false,
+                new Team("Germany", "GER"),
+                new Team("France", "FRA"),
+                3,
+                3,
+                MatchType.GROUP
+        );
+
+        Result result = new Result(
+                new Team("Germany", "GER"),
+                new Team("France", "FRA"),
+                2,
+                2,
+                MatchType.ACHTEL
+        );
+        int point = pointCalculator.calculateGroupPhase(bet, result);
+        assert point == -1;
     }
 }
