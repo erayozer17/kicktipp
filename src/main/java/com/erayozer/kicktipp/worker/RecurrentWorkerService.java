@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
-public class WorkerService {
+public class RecurrentWorkerService {
 
     public static final long EXECUTION_TIME = 5000L;
 

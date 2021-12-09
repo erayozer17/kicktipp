@@ -1,6 +1,6 @@
 package com.erayozer.kicktipp;
 
-import com.erayozer.kicktipp.worker.WorkerService;
+import com.erayozer.kicktipp.worker.RecurrentWorkerService;
 import org.jobrunr.scheduling.JobScheduler;
 import org.jobrunr.scheduling.cron.Cron;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class KicktippApplication {
 
 	@PostConstruct
 	public void scheduleRecurrent(){
-		jobScheduler.<WorkerService>scheduleRecurrently("score-retriever", Cron.every5minutes(), x -> x.executeSampleJob("yeni job basladi"));
+		jobScheduler.<RecurrentWorkerService>scheduleRecurrently("score-retriever", Cron.every5minutes(), x -> x.executeSampleJob("yeni job basladi"));
 		//jobScheduler.delete("score-retriever"); // this stops the job above (pay attention to the id)
 		// https://www.api-football.com/documentation-v3#operation/get-fixtures
 	}

@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class WorkerConfig {
+public class RecurrentWorkerConfig {
     @Bean
     public StorageProvider storageProvider(JobMapper jobMapper) {
         InMemoryStorageProvider storageProvider = new InMemoryStorageProvider();
