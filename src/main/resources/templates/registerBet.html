@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Bets</title>
+    <div th:replace="fragments/header.html :: myheader"></div>
+</head>
+<body>
+
+<!--<select th:field="*{percentage}">-->
+<form action="#" th:action="@{/try/doRegisterBets}" th:object="${bets}" method="post">
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th>
+                Gruppe A
+            </th>
+            <th>
+                Gruppe B
+            </th>
+            <th>
+                Gruppe C
+            </th>
+            <th>
+                Gruppe D
+            </th>
+            <th>
+                Gruppe E
+            </th>
+            <th>
+                Gruppe F
+            </th>
+            <th>
+                Gruppe G
+            </th>
+            <th>
+                Gruppe H
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th>
+                A
+            </th>
+            <th>
+                B
+            </th>
+            <th>
+                C
+            </th>
+            <th>
+                D
+            </th>
+            <th>
+                E
+            </th>
+            <th>
+                F
+            </th>
+            <th>
+                G
+            </th>
+            <th>
+                <select>
+                    <option th:each="team : ${teams}" th:value="${team.abbreviation}" th:text="${team.name}"></option>
+                </select>
+                -
+                <select>
+                    <option th:each="team : ${teams}" th:value="${team.abbreviation}" th:text="${team.name}"></option>
+                </select>
+            </th>
+        </tr>
+        </tbody>
+    </table>
+</form>
+
+
+<div th:insert="fragments/footer.html :: foot"></div>
+</body>
+</html>
