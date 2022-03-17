@@ -2,10 +2,10 @@ package com.erayozer.kicktipp.controller;
 
 import com.erayozer.kicktipp.model.BetForm;
 import com.erayozer.kicktipp.model.Team;
+import com.erayozer.kicktipp.service.PlayerService;
 import com.erayozer.kicktipp.service.TeamService;
 import com.erayozer.kicktipp.worker.QueueWorkerSenderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jca.cci.object.SimpleRecordOperation;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
-import java.util.stream.Collectors;
 
 //@RestController
 @Controller
@@ -27,6 +26,9 @@ public class Try {
     @Autowired
     TeamService teamService;
 
+    @Autowired
+    PlayerService playerService;
+
     @GetMapping("/frontend")
     public String tryOut() {
         return "index";
@@ -35,7 +37,9 @@ public class Try {
     @GetMapping("/registerBets")
     public ModelAndView registerBets(ModelAndView modelAndView) throws ExecutionException, InterruptedException {
         List<Map<String, Object>> teams = teamService.getAll();
+        List<Map<String, Object>> players = playerService.getAll();
         modelAndView.addObject("teams", teams);
+        modelAndView.addObject("players", players);
         modelAndView.setViewName("registerBet");
         return modelAndView;
     }
