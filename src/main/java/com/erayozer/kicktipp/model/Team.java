@@ -8,6 +8,10 @@ public class Team implements FirebaseModel {
 
     public Team() {}
 
+    public Team(String abbreviation) {
+        this.abbreviation = abbreviation;
+    }
+
     public Team(String name, String abbreviation) {
         this.name = name;
         this.abbreviation = abbreviation;

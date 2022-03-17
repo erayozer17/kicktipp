@@ -1,7 +1,10 @@
 package com.erayozer.kicktipp.controller;
 
 import com.erayozer.kicktipp.model.BetForm;
+import com.erayozer.kicktipp.model.Participant;
+import com.erayozer.kicktipp.model.Player;
 import com.erayozer.kicktipp.model.Team;
+import com.erayozer.kicktipp.service.ParticipantService;
 import com.erayozer.kicktipp.service.PlayerService;
 import com.erayozer.kicktipp.service.TeamService;
 import com.erayozer.kicktipp.worker.QueueWorkerSenderService;
@@ -29,6 +32,9 @@ public class Try {
     @Autowired
     PlayerService playerService;
 
+    @Autowired
+    ParticipantService participantService;
+
     @GetMapping("/frontend")
     public String tryOut() {
         return "index";
@@ -40,13 +46,22 @@ public class Try {
         List<Map<String, Object>> players = playerService.getAll();
         modelAndView.addObject("teams", teams);
         modelAndView.addObject("players", players);
+        modelAndView.addObject("bets", new BetForm());
         modelAndView.setViewName("registerBet");
         return modelAndView;
     }
 
     @PostMapping("/doRegisterBets")
-    public void foobarPost(@ModelAttribute("bets") BetForm bets, Model model ) {
-        System.out.println("jiji");
+    public ModelAndView foobarPost(@ModelAttribute("bets") BetForm bets, Model model ) {
+        Participant participant = new Participant("denemeform@gg.com", bets.getBets(), 0, bets.getChampion(), new Player("form deneme king", new Team("form_abbr")));
+        try {
+            participantService.save(participant);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return new ModelAndView("redirect:/try/registerBets");
     }
 
     @GetMapping("/queue")

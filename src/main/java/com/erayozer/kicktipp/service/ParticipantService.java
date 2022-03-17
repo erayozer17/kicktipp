@@ -1,5 +1,6 @@
 package com.erayozer.kicktipp.service;
 
+import com.erayozer.kicktipp.model.Bet;
 import com.erayozer.kicktipp.model.Participant;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,9 @@ public class ParticipantService extends FirebaseCrud<Participant> {
 
     @Override
     public String save(Participant participant) throws InterruptedException, ExecutionException {
+        if (! validateBets(participant)) {
+            return "not_valid";
+        }
         return saveObject(participant, participant.identifier());
     }
 
@@ -35,5 +39,22 @@ public class ParticipantService extends FirebaseCrud<Participant> {
     @Override
     public String delete(String name) {
         return deleteObject(name);
+    }
+
+    private boolean validateBets(Participant participant) {
+        int numberOfJokers = 0;
+        List<Bet> bets = participant.getBets();
+        for (Bet bet : bets) {
+            // Validate jokers
+            if (bet.isJoker()) {
+                if (numberOfJokers == 10) {
+                    return false;
+                }
+                numberOfJokers++;
+            }
+
+
+        }
+        return true;
     }
 }
