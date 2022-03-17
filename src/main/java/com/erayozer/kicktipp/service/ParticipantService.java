@@ -53,7 +53,15 @@ public class ParticipantService extends FirebaseCrud<Participant> {
                 numberOfJokers++;
             }
 
+            // Validate teams
+            if (bet.getAwayTeam().getAbbreviation().equals(bet.getHomeTeam().getAbbreviation())){
+                return false;
+            }
 
+            // Validate scores
+            if (bet.getHomeScore() < 0 || bet.getAwayScore() < 0) {
+                return false;
+            }
         }
         return true;
     }

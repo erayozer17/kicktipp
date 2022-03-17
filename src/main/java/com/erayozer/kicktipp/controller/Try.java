@@ -56,6 +56,9 @@ public class Try {
         Player player = playerService.get(bets.getGoalKing().getName());
         Participant participant = new Participant("denemeform@gg.com", bets.getBets(), 0, bets.getChampion(), player);
         participantService.save(participant);
+
+        // TODO: grup maclarindaki takimlari form sirasina gore burada alman lazim.
+
         return new ModelAndView("redirect:/try/registerBets");
     }
 
