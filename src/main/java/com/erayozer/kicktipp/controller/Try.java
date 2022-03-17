@@ -7,7 +7,7 @@ import com.erayozer.kicktipp.model.Team;
 import com.erayozer.kicktipp.service.ParticipantService;
 import com.erayozer.kicktipp.service.PlayerService;
 import com.erayozer.kicktipp.service.TeamService;
-import com.erayozer.kicktipp.worker.QueueWorkerSenderService;
+//import com.erayozer.kicktipp.worker.QueueWorkerSenderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,8 +23,8 @@ import java.util.concurrent.ExecutionException;
 @RequestMapping("/try")
 public class Try {
 
-    @Autowired
-    QueueWorkerSenderService queueWorkerSenderService;
+//    @Autowired
+//    QueueWorkerSenderService queueWorkerSenderService;
 
     @Autowired
     TeamService teamService;
@@ -62,13 +62,13 @@ public class Try {
         return new ModelAndView("redirect:/try/registerBets");
     }
 
-    @GetMapping("/queue")
-    public void tryOutQueue() {
-        for (int i = 0 ; i < 20 ; i++){
-            Team team = new Team("Turkey", "TUR");
-            queueWorkerSenderService.send(team);
-        }
-    }
+//    @GetMapping("/queue")
+//    public void tryOutQueue() {
+//        for (int i = 0 ; i < 20 ; i++){
+//            Team team = new Team("Turkey", "TUR");
+//            queueWorkerSenderService.send(team);
+//        }
+//    }
 
     @GetMapping("/registerTeams")
     public void registerTeams() throws ExecutionException, InterruptedException {
