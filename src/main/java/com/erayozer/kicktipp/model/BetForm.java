@@ -6,8 +6,7 @@ import java.util.List;
 public class BetForm {
     private List<Bet> bets;
     private Team champion;
-//    private String homeTeam;
-//    private String awayTeam;
+    private Player goalKing;
 
     public BetForm() {
         this.bets = new ArrayList<>();
@@ -34,19 +33,11 @@ public class BetForm {
         this.champion = champion;
     }
 
-//    public String getHomeTeam() {
-//        return homeTeam;
-//    }
-//
-//    public void setHomeTeam(String homeTeam) {
-//        this.homeTeam = homeTeam;
-//    }
-//
-//    public String getAwayTeam() {
-//        return awayTeam;
-//    }
-//
-//    public void setAwayTeam(String awayTeam) {
-//        this.awayTeam = awayTeam;
-//    }
+    public Player getGoalKing() {
+        return goalKing;
+    }
+
+    public void setGoalKing(Player goalKing) {
+        this.goalKing = goalKing;
+    }
 }

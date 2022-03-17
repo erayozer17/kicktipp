@@ -52,15 +52,10 @@ public class Try {
     }
 
     @PostMapping("/doRegisterBets")
-    public ModelAndView foobarPost(@ModelAttribute("bets") BetForm bets, Model model ) {
-        Participant participant = new Participant("denemeform@gg.com", bets.getBets(), 0, bets.getChampion(), new Player("form deneme king", new Team("form_abbr")));
-        try {
-            participantService.save(participant);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
+    public ModelAndView foobarPost(@ModelAttribute("bets") BetForm bets, Model model ) throws ExecutionException, InterruptedException {
+        Player player = playerService.get(bets.getGoalKing().getName());
+        Participant participant = new Participant("denemeform@gg.com", bets.getBets(), 0, bets.getChampion(), player);
+        participantService.save(participant);
         return new ModelAndView("redirect:/try/registerBets");
     }
 
